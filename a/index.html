@@ -2,29 +2,21 @@
 <html lang="zh-cn">
 
 <head>
-    <script src="./Bmob-2.2.5.min.js"></script>
     <script>
-        (async function () {
+        (function () {
             if (location.search.substr(0, 1) != "?") {
+                alert("链接错误");
                 return;
             }
+
             let chain = location.search.substr(1);
             if (chain.length == 0) {
                 alert("链接错误");
                 return;
             }
-            // 初始化
-            Bmob.initialize("4805f4f0a0b329e5", "Qw68@#");
 
-            const query = Bmob.Query("ShortChain");
-            query.equalTo("chain", "==", chain);
-            let res = await query.find();
-            if (res.length == 0) {
-                alert("链接不存在/已过期");
-                return;
-            }
-            window.location.replace(res[0].url);
-
+            var url = "https://1846wr0045.zicp.fun/short_chain?key=" + chain;
+            window.location.replace(url);
         })()
     </script>
 
