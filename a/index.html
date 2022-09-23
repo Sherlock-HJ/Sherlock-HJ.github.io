@@ -3,20 +3,25 @@
 
 <head>
     <script>
-        (function () {
+        (async function () {
             if (location.search.substr(0, 1) != "?") {
                 alert("链接错误");
                 return;
             }
 
-            let chain = location.search.substr(1);
+            const chain = location.search.substr(1);
             if (chain.length == 0) {
                 alert("链接错误");
                 return;
             }
 
-            var url = "https://1846wr0045.zicp.fun/short_chain?key=" + chain;
-            window.location.replace(url);
+            const resp = await fetch("https://1846wr0045.zicp.fun/short_chain?key=" + chain);
+            const url = await resp.text();
+            if (url.length > 0) {
+                window.location.replace(url);
+            } else {
+                alert("链接不存在");
+            }
         })()
     </script>
 
